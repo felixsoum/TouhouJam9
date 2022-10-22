@@ -39,9 +39,9 @@ public class Bullet : MonoBehaviour
         SetDamage();
     }
 
-    public void SetBulletDir(Vector3 dir)
+    public void SetBulletDir(Vector3 dir, Quaternion spawnerRot)
     {
-        transform.rotation = Quaternion.Euler(dir);
+        transform.rotation = Quaternion.Euler(dir) * spawnerRot;
     }
 
     private IEnumerator DisableAfterSeconds(float seconds)

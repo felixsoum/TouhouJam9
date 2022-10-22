@@ -170,8 +170,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2423823514105745499}
   - component: {fileID: 8866495458757573863}
+  - component: {fileID: 6256414119099026507}
   m_Layer: 0
-  m_Name: BulletSpwner
+  m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,6 +207,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpawner: {fileID: 11400000, guid: 6c9ef12893870544fa35e602d8fc2c71, type: 2}
   isEnabled: 0
+--- !u!114 &6256414119099026507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3159846761456317693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ede1535335dbb4da65205ce735beea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7375647132994887354
 GameObject:
   m_ObjectHideFlags: 0
