@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,10 +10,9 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public float bulletDamage;
 
-    private void Start()
+    private void OnEnable()
     {
-        // Yikes but oh well
-        Invoke("DisableGameObject", 5f);
+        StartCoroutine(DisableAfterSeconds(5f));
     }
 
     private void Update()
@@ -37,6 +37,17 @@ public class Bullet : MonoBehaviour
         SetSize();
         SetSpeed();
         SetDamage();
+    }
+
+    public void SetBulletDir(Vector3 dir)
+    {
+        transform.rotation = Quaternion.Euler(dir);
+    }
+
+    private IEnumerator DisableAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DisableGameObject();
     }
 
     private void SetSize()

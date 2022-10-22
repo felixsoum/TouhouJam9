@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &102451988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -639,11 +639,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledEnemy: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
     type: 3}
-  pooledEnemyCount: 50
+  pooledEnemyCount: 10
   enemyPool: []
   pooledBullet: {fileID: 7537862621900389710, guid: 9e84bcbd4037c654b8d10d8aa65c5b10,
     type: 3}
-  pooledBulletCount: 1000
+  pooledBulletCount: 100
   bulletPool: []
 --- !u!1 &1014543463
 GameObject:
@@ -762,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1217813929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf384d7dc94c9ae4b96b09c660f9a246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpawner: {fileID: 11400000, guid: 6c9ef12893870544fa35e602d8fc2c71, type: 2}
+  baseSpawner: {fileID: 11400000, guid: 3e1ab51a81958724682aeeac788ba58d, type: 2}
   isEnabled: 0
 --- !u!4 &1895112441
 Transform:
@@ -1055,7 +1055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2131680996
 BoxCollider:
   m_ObjectHideFlags: 0
