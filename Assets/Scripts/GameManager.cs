@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject gameTilePrefab;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] Transform originTileTransform;
+
+    [SerializeField] int tileColumnCount = 8;
+    [SerializeField] int tileRowCount = 6;
+
+    [SerializeField] float tileSpacing = 1f;
+
+    private void Start()
     {
-        
+
+        for (int z = 0; z < tileRowCount; z++)
+        {
+            for (int x = 0; x < tileColumnCount; x++)
+            {
+                Vector3 spawnPosition = originTileTransform.position;
+                spawnPosition.x += x * tileSpacing;
+                spawnPosition.z += z * tileSpacing;
+                Instantiate(gameTilePrefab, spawnPosition, Quaternion.identity);
+            } 
+        }
     }
 }
