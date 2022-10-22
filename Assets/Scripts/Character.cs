@@ -8,6 +8,10 @@ public class Character : Actor
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
 
+    public static Character GetPlayerCharacter()
+    {
+        return GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+    }
 
     protected override void Update()
     {

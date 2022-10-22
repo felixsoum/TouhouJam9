@@ -434,6 +434,7 @@ MonoBehaviour:
   tileColumnCount: 8
   tileRowCount: 6
   tileSpacing: 1
+  enemySpawnDistance: 8
   playerCharacter: {fileID: 633657147}
   enemyPrefab: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
     type: 3}
@@ -518,6 +519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 729328713254166856, guid: 384090a498f201443b34fe23e3081553,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384090a498f201443b34fe23e3081553, type: 3}
