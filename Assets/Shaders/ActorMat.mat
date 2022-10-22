@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CharacterMat
+  m_Name: ActorMat
   m_Shader: {fileID: -6465566751694194690, guid: df5375af71e4413419d70f0556e4199a,
     type: 3}
   m_ValidKeywords: []

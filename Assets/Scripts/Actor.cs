@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] MeshRenderer meshRenderer;
+
+    protected Material material;
+    protected Camera mainCamera;
+
+    private void Awake()
     {
-        
+        material = meshRenderer.material;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        mainCamera = Camera.main;
+    }
+
+    protected virtual void Update()
+    {
+        meshRenderer.transform.forward = mainCamera.transform.forward;
     }
 }

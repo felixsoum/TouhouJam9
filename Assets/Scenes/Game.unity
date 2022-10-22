@@ -435,6 +435,8 @@ MonoBehaviour:
   tileRowCount: 6
   tileSpacing: 1
   playerCharacter: {fileID: 633657147}
+  enemyPrefab: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+    type: 3}
 --- !u!4 &1719606771
 Transform:
   m_ObjectHideFlags: 0

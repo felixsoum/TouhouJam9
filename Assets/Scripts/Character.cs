@@ -3,30 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Actor
 {
-    [SerializeField] MeshRenderer meshRenderer;
-
-    Material material;
-
-    Camera mainCamera;
-
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
 
-    private void Awake()
-    {
-        material = meshRenderer.material;
-    }
 
-    private void Start()
+    protected override void Update()
     {
-        mainCamera = Camera.main;
-    }
-
-    private void Update()
-    {
-        meshRenderer.transform.forward = mainCamera.transform.forward;
+        base.Update();
 
         if (isPicked)
         {
