@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b444467b2c4955c488d7295fad25f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualContainer: {fileID: 5508292083441030427}
   meshRenderer: {fileID: 2082318133808601409}
   myRigidbody: {fileID: 2036061862527402994}
 --- !u!136 &2347544628142237285

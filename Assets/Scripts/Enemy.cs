@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Enemy : Actor
@@ -23,6 +24,7 @@ public class Enemy : Actor
     {
         var direction = player.transform.position - transform.position;
         direction.Normalize();
+        SetIsFacingRight(direction.x > 0);
         myRigidbody.AddForce(direction * Time.fixedDeltaTime * 10f);
     }
 }

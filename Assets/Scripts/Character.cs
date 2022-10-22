@@ -23,6 +23,11 @@ public class Character : Actor
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
+                float moveDelta = transform.position.x - hitInfo.point.x;
+                if (Mathf.Abs(moveDelta) > 0.01f)
+                {
+                    SetIsFacingRight(transform.position.x < hitInfo.point.x); 
+                }
                 transform.position = hitInfo.point;
             }
             
@@ -32,6 +37,7 @@ public class Character : Actor
                 isPicked = false;
                 material.SetFloat("_IsPicked", 0);
                 MouseProxy.Reset();
+                Time.timeScale = 1;
             }
         }
     }
@@ -40,5 +46,6 @@ public class Character : Actor
     {
         isPicked = true;
         material.SetFloat("_IsPicked", 1);
+        Time.timeScale = 0;
     }
 }
