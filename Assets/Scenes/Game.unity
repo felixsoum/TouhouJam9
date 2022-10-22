@@ -276,7 +276,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719606771}
   - component: {fileID: 1719606770}
+  - component: {fileID: 1719606772}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -471,6 +472,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719606772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719606769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40b7e8b48d41f945b5340527f681d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledEnemy: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+    type: 3}
+  pooledEnemyCount: 100
+  enemyPool: []
+  pooledBullet: {fileID: 7537862621900389710, guid: 9e84bcbd4037c654b8d10d8aa65c5b10,
+    type: 3}
+  pooledBulletCount: 100
+  bulletPool: []
 --- !u!1001 &1680294088838590967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,5 +564,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4346059936216907085, guid: 384090a498f201443b34fe23e3081553,
+        type: 3}
+      propertyPath: baseSpawner
+      value: 
+      objectReference: {fileID: 11400000, guid: 20814f6ec5a68064d80d7d2f05fba788,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384090a498f201443b34fe23e3081553, type: 3}
