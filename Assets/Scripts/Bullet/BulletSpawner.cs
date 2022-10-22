@@ -9,13 +9,33 @@ public class BulletSpawner : MonoBehaviour
     [Expandable]
     public BulletSpawnerSO baseSpawner;
 
+    public bool isEnabled;
+
+    private void Start()
+    {
+        isEnabled = true;
+
+        // Yikes but it's simplest LOL
+        InvokeRepeating("Shoot", baseSpawner.spawnRate, baseSpawner.spawnRate);
+
+        if (baseSpawner.hasDuration)
+        {
+            Invoke("DisableSpawner", baseSpawner.spawnDuration);
+        }
+    }
+
     [Button]
     public void Shoot()
     {
+        if (!isEnabled)
+        {
+            return;
+        }
+
         switch (baseSpawner.spawnShape)
         {
             case SpawnShape.Single:
-                SpawnBullet(Quaternion.identity);
+                SpawnBullet(Quaternion.Euler(GetCorrectRotation()));
                 break;
 
             case SpawnShape.Cone:
@@ -47,10 +67,19 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
-    private Vector3 GetForward()
+    private void DisableSpawner()
+    {
+        CancelInvoke("Shoot");
+        isEnabled = false;
+        //Destroy(this);
+    }
+
+    private Vector3 GetCorrectRotation()
     {
         // Fix this once we get a player reference
-        return baseSpawner.targetsPlayer ? Character.GetPlayerCharacter().transform.position : transform.forward;
+        Debug.LogError($"{baseSpawner.targetsPlayer}, {(Character.GetPlayerCharacter().transform.position - transform.position).normalized}");
+
+        return baseSpawner.targetsPlayer ? (Character.GetPlayerCharacter().transform.position - transform.position).normalized : transform.forward;
     }
 
     private void SpawnBullet(Quaternion rotation)
@@ -59,8 +88,6 @@ public class BulletSpawner : MonoBehaviour
 
         bullet.transform.position = transform.position;
         bullet.transform.rotation = rotation;
-
-        //Bullet bullet = Instantiate(BulletManager.Instance.testBullet, transform.position + (0.1f * GetForward()), rotation).GetComponent<Bullet>();
 
         bullet.bulletBehaviour = baseSpawner.bulletSO;
         bullet.UpdateBehaviour();

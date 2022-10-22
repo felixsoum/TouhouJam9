@@ -66,7 +66,7 @@ public class PoolManager : SingletonComponent<PoolManager>
         }
 
         Debug.LogWarning("Did not pre-warm enough bullets, instantiating");
-        Bullet bullet = Instantiate(pooledEnemy).GetComponent<Bullet>();
+        Bullet bullet = Instantiate(pooledBullet).GetComponent<Bullet>();
         bullet.gameObject.SetActive(true);
         bulletPool.Add(bullet);
 
