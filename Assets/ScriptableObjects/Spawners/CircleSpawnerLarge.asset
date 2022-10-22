@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d63eaa9da5d4943b5196ea43608e8d, type: 3}
-  m_Name: NormalCircleSpawner
+  m_Name: CircleSpawnerLarge
   m_EditorClassIdentifier: 
   spawnShape: 2
-  bulletSO: {fileID: 11400000, guid: d411d11d6bf72eb45ac787e88726d863, type: 2}
+  bulletSO: {fileID: 11400000, guid: 21f1eb75372f602458c43429d17cdcd5, type: 2}
   spawnDuration: 10
   spawnRate: 2
   isSpinning: 0
@@ -21,4 +21,4 @@ MonoBehaviour:
   targetsPlayer: 0
   coneAngle: 0
   coneCount: 0
-  circleCount: 5
+  circleCount: 7

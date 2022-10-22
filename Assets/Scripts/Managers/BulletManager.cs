@@ -5,6 +5,5 @@ using UnityEngine;
 
 public class BulletManager : SingletonComponent<BulletManager>
 {
-    [HorizontalLine(color: EColor.Red)] 
-    public GameObject testBullet;
+    
 }

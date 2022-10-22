@@ -9,12 +9,6 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public float bulletDamage;
 
-    private void Start()
-    {
-        // Change this if we pool or make contact with something
-        Destroy(gameObject, 5f);
-    }
-
     private void Update()
     {
         transform.Translate(transform.forward * bulletSpeed * Time.deltaTime);
