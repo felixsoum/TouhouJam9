@@ -46,6 +46,6 @@ public class Character : Actor
     {
         isPicked = true;
         material.SetFloat("_IsPicked", 1);
-        Time.timeScale = 0;
+        Time.timeScale = 0.05f;
     }
 }
