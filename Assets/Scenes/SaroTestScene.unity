@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf384d7dc94c9ae4b96b09c660f9a246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpawner: {fileID: 11400000, guid: 4d87ce36fc9870845aaf6d51ac3b2f90, type: 2}
+  baseSpawner: {fileID: 11400000, guid: 3e1ab51a81958724682aeeac788ba58d, type: 2}
 --- !u!1 &343465459
 GameObject:
   m_ObjectHideFlags: 0

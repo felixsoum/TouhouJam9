@@ -27,4 +27,9 @@ public class BulletSpawnerSO : ScriptableObject
 
     [ShowIf("spawnShape", SpawnShape.Cone)]
     public float coneAngle;
+    [ShowIf("spawnShape", SpawnShape.Cone)]
+    public int coneCount;
+
+    [ShowIf("spawnShape", SpawnShape.Circle)]
+    public int circleCount;
 }
