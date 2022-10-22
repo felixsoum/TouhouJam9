@@ -148,12 +148,12 @@ PrefabInstance:
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
@@ -553,10 +553,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40b7e8b48d41f945b5340527f681d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledEnemy: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+  pooledChaserEnemy: {fileID: 1453894094421919092, guid: f44ccdc56ac47554d89807bcf2e37008,
     type: 3}
-  pooledEnemyCount: 100
-  enemyPool: []
+  pooledChaserEnemyCount: 100
+  chaserEnemyPool: []
+  pooledShooterEnemy: {fileID: 4597592005371027476, guid: 4e3ce1d737d81b740a340b43ac3cf601,
+    type: 3}
+  pooledShooterEnemyCount: 100
+  shooterEnemyPool: []
   pooledBullet: {fileID: 7537862621900389710, guid: 9e84bcbd4037c654b8d10d8aa65c5b10,
     type: 3}
   pooledBulletCount: 100
@@ -633,11 +637,5 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4346059936216907085, guid: 384090a498f201443b34fe23e3081553,
-        type: 3}
-      propertyPath: baseSpawner
-      value: 
-      objectReference: {fileID: 11400000, guid: 20814f6ec5a68064d80d7d2f05fba788,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384090a498f201443b34fe23e3081553, type: 3}

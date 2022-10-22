@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     GameTile[,] gameTiles;
 
     [SerializeField] GameObject enemyPrefab;
-    Vector3 centerPosition;
+    static Vector3 centerPosition;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
                 spawnPosition.x += x * tileSpacing;
                 spawnPosition.z += z * tileSpacing;
                 gameTiles[x, z] = Instantiate(gameTilePrefab, spawnPosition, Quaternion.identity).GetComponent<GameTile>();
-            } 
+            }
         }
 
         centerPosition.x = originTileTransform.position.x + 0.5f * tileSpacing * tileColumnCount - 0.5f * tileSpacing;
@@ -46,8 +46,13 @@ public class GameManager : MonoBehaviour
 
     Vector3 GetRandomEnemySpawn()
     {
+        return GetRandomPointAroundOrigin(enemySpawnDistance);
+    }
+
+    public static Vector3 GetRandomPointAroundOrigin(float radius)
+    {
         var spawnPos = centerPosition;
-        var circle = Random.insideUnitCircle.normalized * enemySpawnDistance;
+        var circle = Random.insideUnitCircle.normalized * radius;
         spawnPos.x += circle.x;
         spawnPos.z += circle.y;
         return spawnPos;
@@ -57,8 +62,15 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            var enemy = PoolManager.Instance.GetPooledEnemy();
-            enemy.transform.position = GetRandomEnemySpawn();
+            for (int i = 0; i < 5; i++)
+            {
+                var chaserEnemy = PoolManager.Instance.GetPooledChaserEnemy();
+                chaserEnemy.transform.position = GetRandomEnemySpawn();
+                yield return new WaitForSeconds(2f);
+            }
+
+            var shooterEnemy = PoolManager.Instance.GetPooledShooterEnemy();
+            shooterEnemy.transform.position = GetRandomEnemySpawn();
             yield return new WaitForSeconds(2f);
         }
     }

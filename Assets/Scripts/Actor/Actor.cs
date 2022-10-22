@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour
         material = meshRenderer.material;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         mainCamera = Camera.main;
     }

@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class PoolManager : SingletonComponent<PoolManager>
 {
-    [BoxGroup("Pooled Enemies")] public GameObject pooledEnemy;
-    [BoxGroup("Pooled Enemies")] public int pooledEnemyCount;
-    [BoxGroup("Pooled Enemies")] public List<Enemy> enemyPool = new List<Enemy>();
+    [BoxGroup("Pooled ChaserEnemies")] public GameObject pooledChaserEnemy;
+    [BoxGroup("Pooled ChaserEnemies")] public int pooledChaserEnemyCount;
+    [BoxGroup("Pooled ChaserEnemies")] public List<Enemy> chaserEnemyPool = new List<Enemy>();
+
+    [BoxGroup("Pooled ShooterEnemies")] public GameObject pooledShooterEnemy;
+    [BoxGroup("Pooled ShooterEnemies")] public int pooledShooterEnemyCount;
+    [BoxGroup("Pooled ShooterEnemies")] public List<Enemy> shooterEnemyPool = new List<Enemy>();
+
 
     [BoxGroup("Pooled Bullets")] public GameObject pooledBullet;
     [BoxGroup("Pooled Bullets")] public int pooledBulletCount;
@@ -16,11 +21,18 @@ public class PoolManager : SingletonComponent<PoolManager>
     // Start is called before the first frame update
     private void Start()
     {
-        for (int i = 0; i < pooledEnemyCount; ++i)
+        for (int i = 0; i < pooledChaserEnemyCount; ++i)
         {
-            Enemy enemy = Instantiate(pooledEnemy).GetComponent<Enemy>();
+            Enemy enemy = Instantiate(pooledChaserEnemy).GetComponent<Enemy>();
             enemy.gameObject.SetActive(false);
-            enemyPool.Add(enemy);
+            chaserEnemyPool.Add(enemy);
+        }
+
+        for (int i = 0; i < pooledChaserEnemyCount; ++i)
+        {
+            Enemy enemy = Instantiate(pooledShooterEnemy).GetComponent<Enemy>();
+            enemy.gameObject.SetActive(false);
+            shooterEnemyPool.Add(enemy);
         }
 
         for (int i = 0; i < pooledBulletCount; ++i)
@@ -31,11 +43,11 @@ public class PoolManager : SingletonComponent<PoolManager>
         }
     }
 
-    public Enemy GetPooledEnemy()
+    public Enemy GetPooledChaserEnemy()
     {
-        for (int i = 0; i < enemyPool.Count; ++i)
+        for (int i = 0; i < chaserEnemyPool.Count; ++i)
         {
-            var e = enemyPool[i];
+            var e = chaserEnemyPool[i];
 
             if (!e.gameObject.activeInHierarchy)
             {
@@ -45,9 +57,30 @@ public class PoolManager : SingletonComponent<PoolManager>
         }
 
         Debug.LogWarning("Did not pre-warm enough enemies, instantiating");
-        Enemy enemy = Instantiate(pooledEnemy).GetComponent<Enemy>();
+        Enemy enemy = Instantiate(pooledChaserEnemy).GetComponent<Enemy>();
         enemy.gameObject.SetActive(true);
-        enemyPool.Add(enemy);
+        chaserEnemyPool.Add(enemy);
+
+        return enemy;
+    }
+
+    public Enemy GetPooledShooterEnemy()
+    {
+        for (int i = 0; i < shooterEnemyPool.Count; ++i)
+        {
+            var e = shooterEnemyPool[i];
+
+            if (!e.gameObject.activeInHierarchy)
+            {
+                e.gameObject.SetActive(true);
+                return e;
+            }
+        }
+
+        Debug.LogWarning("Did not pre-warm enough enemies, instantiating");
+        Enemy enemy = Instantiate(pooledShooterEnemy).GetComponent<Enemy>();
+        enemy.gameObject.SetActive(true);
+        shooterEnemyPool.Add(enemy);
 
         return enemy;
     }

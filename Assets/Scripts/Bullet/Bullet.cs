@@ -68,4 +68,13 @@ public class Bullet : MonoBehaviour
     {
         bulletDamage = bulletBehaviour.bulletDamage;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            var enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.OnDamage(1);
+        }
+    }
 }

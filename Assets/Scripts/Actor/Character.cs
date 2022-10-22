@@ -24,7 +24,7 @@ public class Character : Actor
             if (Physics.Raycast(ray, out hitInfo))
             {
                 float moveDelta = transform.position.x - hitInfo.point.x;
-                if (Mathf.Abs(moveDelta) > 0.01f)
+                if (Mathf.Abs(moveDelta) > 0.001f)
                 {
                     SetIsFacingRight(transform.position.x < hitInfo.point.x); 
                 }

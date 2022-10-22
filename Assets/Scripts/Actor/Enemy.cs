@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
@@ -5,9 +6,9 @@ using UnityEngine;
 
 public class Enemy : Actor
 {
-    [SerializeField] Rigidbody myRigidbody;
+    [SerializeField] protected Rigidbody myRigidbody;
 
-    Character player;
+    protected Character player;
 
     private void Awake()
     {
@@ -20,11 +21,9 @@ public class Enemy : Actor
 
     }
 
-    protected void FixedUpdate()
+
+    internal void OnDamage(int damage)
     {
-        var direction = player.transform.position - transform.position;
-        direction.Normalize();
-        SetIsFacingRight(direction.x > 0);
-        myRigidbody.AddForce(direction * Time.fixedDeltaTime * 10f);
+        gameObject.SetActive(false);
     }
 }
