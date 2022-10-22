@@ -158,3 +158,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 5164478184176393422}
+  characterColllider: {fileID: 9149531744512780285}
