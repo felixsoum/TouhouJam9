@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TombMovement : MonoBehaviour
+public class TombController : MonoBehaviour
 {
+    [SerializeField] float speed = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,6 @@ public class TombMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
     }
 }
