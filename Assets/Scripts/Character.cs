@@ -19,7 +19,6 @@ public class Character : Actor
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                Debug.Log($"{hitInfo.collider.gameObject.name}, {hitInfo.point}");
                 transform.position = hitInfo.point;
             }
             
