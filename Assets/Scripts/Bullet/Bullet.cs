@@ -9,9 +9,21 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public float bulletDamage;
 
+    private void Start()
+    {
+        // Yikes but oh well
+        Invoke("DisableGameObject", 5f);
+    }
+
     private void Update()
     {
         transform.Translate(transform.forward * bulletSpeed * Time.deltaTime);
+    }
+
+    // Remove this after we have proper collission?
+    private void DisableGameObject()
+    {
+        gameObject.SetActive(false);
     }
 
     public void UpdateBehaviour()

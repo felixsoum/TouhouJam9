@@ -17,6 +17,8 @@ public class BulletSpawnerSO : ScriptableObject
     public SpawnShape spawnShape;
     public BulletSO bulletSO;
 
+    public bool hasDuration;
+    [ShowIf("hasDuration")]
     public float spawnDuration;
     public float spawnRate;
 
