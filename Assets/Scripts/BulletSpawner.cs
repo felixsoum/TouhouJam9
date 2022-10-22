@@ -10,44 +10,57 @@ public class BulletSpawner : MonoBehaviour
     [Button]
     public void Shoot()
     {
-        Bullet bullet = Instantiate(BulletManager.Instance.testBullet, transform.position + (1 * GetForward()), Quaternion.identity).GetComponent<Bullet>();
-
-        SetupBullet(bullet);
-    }
-
-    public void SetupBullet(Bullet bullet)
-    {
-        bullet.bulletBehaviour = baseSpawner.bulletSO;
-        bullet.UpdateBehaviour();
-    }
-
-    public Vector3 GetForward()
-    {
-        Vector3 v3 = Vector3.zero;
-
         switch (baseSpawner.spawnShape)
         {
             case SpawnShape.Single:
-                if (baseSpawner.targetsPlayer)
-                {
-                    // Calc here after we get ref to player
-                    return v3;
-                }
-                else
-                {
-                    return transform.forward;
-                }
+                SpawnBullet(Quaternion.identity);
+                break;
+
             case SpawnShape.Cone:
 
-                //float coneAngle = 
+                float coneAngle = baseSpawner.coneAngle / 2;
+                int coneCount = baseSpawner.coneCount;
 
+                float coneAngleIncrement = coneAngle / (coneCount - 1);
+
+                for (int i = 0; i < coneCount; ++i)
+                {
+                    SpawnBullet(GetConeAngle(i * coneAngleIncrement, coneAngle));
+                }
 
                 break;
             case SpawnShape.Circle:
 
+                float circleAngle = 180f;
+                float circleCount = baseSpawner.circleCount;
+
+                float circleAngleIncrement = circleAngle / circleCount;
+
+                for (int i = 0; i < circleCount; ++i)
+                {
+                    SpawnBullet(GetConeAngle(i * circleAngleIncrement, circleAngle));
+                }
+
                 break;
         }
+    }
 
-        return v3;
+    private Vector3 GetForward()
+    {
+        // Fix this once we get a player reference
+        return baseSpawner.targetsPlayer ? Vector3.one : transform.forward;
+    }
+
+    private void SpawnBullet(Quaternion rotation)
+    {
+        Bullet bullet = Instantiate(BulletManager.Instance.testBullet, transform.position + (0.1f * GetForward()), rotation).GetComponent<Bullet>();
+
+        bullet.bulletBehaviour = baseSpawner.bulletSO;
+        bullet.UpdateBehaviour();
+    }
+
+    private Quaternion GetConeAngle(float currentAngle, float totalAngle)
+    {
+        return Quaternion.AngleAxis(currentAngle - (totalAngle / 2), Vector3.up);
     }
 }

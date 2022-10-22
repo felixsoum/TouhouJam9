@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d63eaa9da5d4943b5196ea43608e8d, type: 3}
-  m_Name: NormalLineSpawner
+  m_Name: NormalConeSpawner
   m_EditorClassIdentifier: 
-  spawnShape: 0
+  spawnShape: 1
   bulletSO: {fileID: 11400000, guid: d411d11d6bf72eb45ac787e88726d863, type: 2}
   spawnDuration: 10
   spawnRate: 2
   isSpinning: 0
   spinSpeed: 0
   targetsPlayer: 0
-  coneAngle: 0
-  coneCount: 0
+  coneAngle: 180
+  coneCount: 10
+  circleCount: 0
