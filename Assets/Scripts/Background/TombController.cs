@@ -15,6 +15,6 @@ public class TombController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+        gameObject.transform.position += new Vector3(0, 0, -speed) * Time.deltaTime;
     }
 }
