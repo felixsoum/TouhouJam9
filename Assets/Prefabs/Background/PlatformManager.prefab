@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4110906704251176429, guid: f898437860dbf714b9b71b80db69c14e, type: 3}
-  cooldown: 6
-  lifetime: 15
+  cooldown: 15
+  lifetime: 40
