@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e15f8d1420c723048a4657e3cd38069e, type: 3}
-  m_Name: Normal
+  m_Name: SlowLarge
   m_EditorClassIdentifier: 
-  bulletSize: 1
-  bulletSpeed: 3
-  bulletDamage: 2
+  bulletSize: 2
+  bulletSpeed: 1
+  bulletDamage: 3

@@ -1,10 +1,12 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
+    [Expandable]
     public BulletSpawnerSO baseSpawner;
 
     [Button]
@@ -48,12 +50,17 @@ public class BulletSpawner : MonoBehaviour
     private Vector3 GetForward()
     {
         // Fix this once we get a player reference
-        return baseSpawner.targetsPlayer ? Vector3.one : transform.forward;
+        return baseSpawner.targetsPlayer ? Character.GetPlayerCharacter().transform.position : transform.forward;
     }
 
     private void SpawnBullet(Quaternion rotation)
     {
-        Bullet bullet = Instantiate(BulletManager.Instance.testBullet, transform.position + (0.1f * GetForward()), rotation).GetComponent<Bullet>();
+        Bullet bullet = PoolManager.Instance.GetPooledBullet();
+
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = rotation;
+
+        //Bullet bullet = Instantiate(BulletManager.Instance.testBullet, transform.position + (0.1f * GetForward()), rotation).GetComponent<Bullet>();
 
         bullet.bulletBehaviour = baseSpawner.bulletSO;
         bullet.UpdateBehaviour();

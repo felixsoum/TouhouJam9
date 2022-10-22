@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d63eaa9da5d4943b5196ea43608e8d, type: 3}
-  m_Name: NormalLineSpawner
+  m_Name: LineSpawnerNormal
   m_EditorClassIdentifier: 
   spawnShape: 0
   bulletSO: {fileID: 11400000, guid: d411d11d6bf72eb45ac787e88726d863, type: 2}
