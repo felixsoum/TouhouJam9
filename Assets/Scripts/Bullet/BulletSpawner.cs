@@ -35,7 +35,7 @@ public class BulletSpawner : MonoBehaviour
         switch (baseSpawner.spawnShape)
         {
             case SpawnShape.Single:
-                SpawnBullet(Quaternion.Euler(GetCorrectRotation()));
+                SpawnBullet(new Vector3(0f, GetCorrectRotation(), 0f));
                 break;
 
             case SpawnShape.Cone:
@@ -74,27 +74,28 @@ public class BulletSpawner : MonoBehaviour
         //Destroy(this);
     }
 
-    private Vector3 GetCorrectRotation()
+    private float GetCorrectRotation()
     {
-        // Fix this once we get a player reference
-        Debug.LogError($"{baseSpawner.targetsPlayer}, {(Character.GetPlayerCharacter().transform.position - transform.position).normalized}");
+        float angle = Vector3.Angle(transform.position, Character.GetPlayerCharacter().transform.position);
 
-        return baseSpawner.targetsPlayer ? (Character.GetPlayerCharacter().transform.position - transform.position).normalized : transform.forward;
+        return baseSpawner.targetsPlayer ? angle : 0f;
     }
 
-    private void SpawnBullet(Quaternion rotation)
+    private void SpawnBullet(Vector3 dir)
     {
         Bullet bullet = PoolManager.Instance.GetPooledBullet();
 
         bullet.transform.position = transform.position;
-        bullet.transform.rotation = rotation;
+        bullet.SetBulletDir(dir);
 
         bullet.bulletBehaviour = baseSpawner.bulletSO;
         bullet.UpdateBehaviour();
     }
 
-    private Quaternion GetConeAngle(float currentAngle, float totalAngle)
+    private Vector3 GetConeAngle(float currentAngle, float totalAngle)
     {
-        return Quaternion.AngleAxis(currentAngle - (totalAngle / 2), Vector3.up);
+        //Vector3 v3 = Quaternion.AngleAxis(currentAngle - (totalAngle / 2), Vector3.forward) * Vector3.up;
+
+        return new Vector3(0f, currentAngle - (totalAngle / 2), 0f);
     }
 }

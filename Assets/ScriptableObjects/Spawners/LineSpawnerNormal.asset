@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnShape: 0
   bulletSO: {fileID: 11400000, guid: d411d11d6bf72eb45ac787e88726d863, type: 2}
+  hasDuration: 0
   spawnDuration: 10
   spawnRate: 2
   isSpinning: 0
@@ -21,3 +22,4 @@ MonoBehaviour:
   targetsPlayer: 0
   coneAngle: 0
   coneCount: 0
+  circleCount: 0
