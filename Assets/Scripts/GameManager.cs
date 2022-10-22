@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(enemyPrefab, GetRandomEnemySpawn(), Quaternion.identity);
+            var enemy = PoolManager.Instance.GetPooledEnemy();
+            enemy.transform.position = GetRandomEnemySpawn();
             yield return new WaitForSeconds(2f);
         }
     }
