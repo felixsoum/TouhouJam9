@@ -4,7 +4,7 @@ using UnityEngine;
 public class Enemy : Actor
 {
     [SerializeField] protected Rigidbody myRigidbody;
-
+    [SerializeField] AudioSource onHitAudio;
     protected Character player;
     [SerializeField] int hp = 2;
 
@@ -24,13 +24,14 @@ public class Enemy : Actor
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<Character>();
-            player.OnDamage(50);
+            player.OnDamage(34);
         }
     }
 
     internal void OnDamage(int damage)
     {
         hp -= damage;
+        onHitAudio.Play();
         if (hp <= 0)
         {
             isAlive = false;

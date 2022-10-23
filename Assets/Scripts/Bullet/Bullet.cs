@@ -98,7 +98,7 @@ public class Bullet : MonoBehaviour
             var player = other.gameObject.GetComponent<Character>();
             if (player.IsAlive)
             {
-                player.OnDamage(5);
+                player.OnDamage(34);
                 gameObject.SetActive(false);
             }
         }

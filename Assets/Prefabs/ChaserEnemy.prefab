@@ -67,6 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7510123340627299687, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510123340627299687, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8260215589085612203, guid: 1b18fc5a613efab4a8d62e50fd20c946, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1b18fc5a613efab4a8d62e50fd20c946, type: 3}
@@ -91,6 +101,8 @@ MonoBehaviour:
   visualContainer: {fileID: 5538067729083888175}
   meshRenderer: {fileID: 2040034396777758325}
   myRigidbody: {fileID: 2083972898055955654}
+  onHitAudio: {fileID: 3626115260086137911}
+  hp: 2
   acceleration: 1
   maxSpeed: 0.5
 --- !u!23 &2040034396777758325 stripped
@@ -102,6 +114,12 @@ MeshRenderer:
 --- !u!54 &2083972898055955654 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2036061862527402994, guid: 1b18fc5a613efab4a8d62e50fd20c946,
+    type: 3}
+  m_PrefabInstance: {fileID: 47931245782378292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3626115260086137911 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3672902835266032387, guid: 1b18fc5a613efab4a8d62e50fd20c946,
     type: 3}
   m_PrefabInstance: {fileID: 47931245782378292}
   m_PrefabAsset: {fileID: 0}

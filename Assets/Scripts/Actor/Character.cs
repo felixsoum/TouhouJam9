@@ -3,18 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Character : Actor
 {
+    [SerializeField] GameManager gameManager;
     private const float FadeSpeed = 2f;
-    float bulletFireRate = 3f;
+    float bulletFireRate = 1f;
     [SerializeField] BulletSpawner bulletSpawner;
     [SerializeField] BulletSpawner bulletSpawner2;
     [SerializeField] Collider characterCollider;
     [SerializeField] PlayerHUD playerHUD;
     [SerializeField] Transform headTransform;
     [SerializeField] GameObject beam;
+    [SerializeField] GameObject hand;
+
+    [SerializeField] AudioSource bulletShootAudio;
+    [SerializeField] AudioSource onHitAudio;
 
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
@@ -25,21 +31,27 @@ public class Character : Actor
     public bool IsBeamActive { get; set; }
 
     float fadeValue;
+    bool isFirstPicked;
 
     public float Stamina { get; set; } = 1f;
 
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(BulletCoroutine());
     }
 
     IEnumerator BulletCoroutine()
     {
         while (true)
         {
+            float waitTime = bulletFireRate;
+            if (Stamina == 1)
+            {
+                waitTime /= 2f;
+            }
             yield return new WaitForSeconds(bulletFireRate);
             var angle = new Vector3(0, IsFacingRight ? 90 : -90, 0);
+            bulletShootAudio.Play();
             bulletSpawner.SpawnBullet(angle);
             bulletSpawner2.SpawnBullet(angle);
         }
@@ -53,6 +65,11 @@ public class Character : Actor
     protected override void Update()
     {
         base.Update();
+
+        if (!isFirstPicked)
+        {
+            hand.transform.localPosition = new Vector3(0, 0.75f + 0.25f * Mathf.Sin(5f * Time.time) , 0);
+        }
 
         if (!isAlive)
         {
@@ -68,7 +85,7 @@ public class Character : Actor
 
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
+            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.CompareTag("Ground"))
             {
                 float moveDelta = transform.position.x - hitInfo.point.x;
                 if (Mathf.Abs(moveDelta) > 0.01f)
@@ -82,9 +99,10 @@ public class Character : Actor
             {
                 isPicked = false;
                 material.SetFloat("_IsPicked", 0);
-                //MouseProxy.Reset();
+
                 Time.timeScale = 1;
                 characterCollider.enabled = true;
+                hand.SetActive(false);
             }
         }
         else
@@ -96,10 +114,19 @@ public class Character : Actor
 
     private void OnMouseDown()
     {
-        if (!isAlive)
+        if (!isFirstPicked)
+        {
+            isFirstPicked = true;
+            StartCoroutine(BulletCoroutine());
+            hand.transform.localPosition = new Vector3(0, 0.5f, 0);
+            hand.SetActive(false);
+        }
+
+        if (!isAlive || Time.timeScale < 1)
         {
             return;
         }
+        gameManager.StartGame();
         MouseDown();
     }
 
@@ -114,6 +141,7 @@ public class Character : Actor
         material.SetFloat("_IsPicked", 1);
         Time.timeScale = 0.05f;
         characterCollider.enabled = false;
+        hand.SetActive(true);
     }
 
     public float GetHPRatio()
@@ -130,12 +158,19 @@ public class Character : Actor
 
         OnHit();
         currentHP -= damage;
+        onHitAudio.Play();
         if (currentHP <= 0)
         {
             currentHP = 0;
             isAlive = false;
-            playerHUD.ShowDeathScreen();
+            Invoke("Reset", 2f);
+            //playerHUD.ShowDeathScreen();
         }
+    }
+
+    private void Reset()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     public Vector3 GetHeadPosition()
@@ -146,11 +181,11 @@ public class Character : Actor
     internal void AddExp(int exp)
     {
         currentExp += exp;
-        if (currentExp >= maxExp)
-        {
-            currentExp %= maxExp;
-            playerHUD.LevelUp();
-        }
+        //if (currentExp >= maxExp)
+        //{
+        //    currentExp %= maxExp;
+        //    playerHUD.LevelUp();
+        //}
     }
 
     internal void UpgradeFireRate()

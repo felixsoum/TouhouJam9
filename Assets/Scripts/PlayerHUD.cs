@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,9 +26,9 @@ public class PlayerHUD : MonoBehaviour
         levelUpMenu.SetActive(false);
     }
 
-    internal void ShowDeathScreen()
+    internal void CompleteGame()
     {
-        StartCoroutine(DeathScreenCoroutine());
+        StartCoroutine(CompleteGameCoroutine());
     }
 
     private void Start()
@@ -55,7 +53,7 @@ public class PlayerHUD : MonoBehaviour
         staminaBar.position = screenPoint;
     }
 
-    IEnumerator DeathScreenCoroutine()
+    IEnumerator CompleteGameCoroutine()
     {
         yield return new WaitForSecondsRealtime(1f);
         Time.timeScale = 0;

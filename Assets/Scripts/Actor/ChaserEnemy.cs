@@ -20,7 +20,10 @@ public class ChaserEnemy : Enemy
 
         var direction = player.transform.position - transform.position;
         direction.Normalize();
-        SetIsFacingRight(direction.x > 0);
+        if (Time.timeScale == 1)
+        {
+            SetIsFacingRight(direction.x > 0); 
+        }
 
         velocity += direction * acceleration * Time.deltaTime;
         if (velocity.magnitude > maxSpeed)

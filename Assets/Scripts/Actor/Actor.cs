@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class Actor : MonoBehaviour
@@ -26,6 +23,7 @@ public class Actor : MonoBehaviour
     protected virtual void Start()
     {
         mainCamera = Camera.main;
+        SetIsFacingRight(true);
     }
 
     private void OnEnable()
@@ -56,7 +54,7 @@ public class Actor : MonoBehaviour
 
         this.isFacingRight = isFacingRight;
 
-        visualContainer.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
+        visualContainer.transform.localScale = new Vector3(isFacingRight ? -1 : 1, 1, 1);
     }
 
     protected virtual void OnDeath() { }
