@@ -35,6 +35,7 @@ public class Enemy : Actor
         {
             isAlive = false;
             player.AddExp(20);
+            GameManager.Instance.enemiesKilled++;
             OnDeath();
             StartCoroutine(DeathCoroutine());
         }

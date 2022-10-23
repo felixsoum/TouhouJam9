@@ -10,6 +10,8 @@ public class GameManager : SingletonComponent<GameManager>
     [SerializeField] int tileRowCount = 6;
     [SerializeField] float tileSpacing = 1f;
     [SerializeField] float enemySpawnDistance = 6f;
+    public int enemiesKilled = 0;
+    public float timeSurvived = 0f;
 
     [SerializeField] Character playerCharacter;
     GameTile[,] gameTiles;
@@ -36,6 +38,21 @@ public class GameManager : SingletonComponent<GameManager>
 
         centerPosition.x = originTileTransform.position.x + 0.5f * tileSpacing * tileColumnCount - 0.5f * tileSpacing;
         centerPosition.z = originTileTransform.position.z + 0.5f * tileSpacing * tileRowCount - 0.5f * tileSpacing;
+
+        ResetGame();
+    }
+
+    private void Update()
+    {
+        timeSurvived += Time.deltaTime;
+    }
+
+    public void ResetGame()
+    {
+        Time.timeScale = 1f;
+
+        enemiesKilled = 0;
+        timeSurvived = 0f;
 
         MoveCharacterToTile(4, 3);
 

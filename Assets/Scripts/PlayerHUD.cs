@@ -64,6 +64,7 @@ public class PlayerHUD : MonoBehaviour
         yuyukoPortrait.enabled = true;
         yield return new WaitForSecondsRealtime(1f);
         deathText.enabled = true;
+        deathText.text = $"Game Over \n<size=60%>Time Survived: {(GameManager.Instance.timeSurvived - 3).ToString("N1")}s \nEnemies Killed: {GameManager.Instance.enemiesKilled}";
         yield return new WaitForSecondsRealtime(5f);
         Time.timeScale = 1;
         SceneManager.LoadScene("Start");
