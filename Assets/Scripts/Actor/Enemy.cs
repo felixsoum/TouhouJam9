@@ -24,7 +24,7 @@ public class Enemy : Actor
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<Character>();
-            player.OnDamage(10);
+            player.OnDamage(50);
         }
     }
 

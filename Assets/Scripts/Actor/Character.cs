@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Character : Actor
 {
@@ -13,12 +14,15 @@ public class Character : Actor
     [SerializeField] Collider characterCollider;
     [SerializeField] PlayerHUD playerHUD;
     [SerializeField] Transform headTransform;
+    [SerializeField] GameObject beam;
 
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
     public int currentHP = 100;
     public int currentExp;
     public int maxExp = 100;
+
+    public bool IsBeamActive { get; set; }
 
     float fadeValue;
 
@@ -67,7 +71,7 @@ public class Character : Actor
             if (Physics.Raycast(ray, out hitInfo))
             {
                 float moveDelta = transform.position.x - hitInfo.point.x;
-                if (Mathf.Abs(moveDelta) > 0.001f)
+                if (Mathf.Abs(moveDelta) > 0.01f)
                 {
                     SetIsFacingRight(transform.position.x < hitInfo.point.x);
                 }
@@ -152,5 +156,29 @@ public class Character : Actor
     internal void UpgradeFireRate()
     {
         bulletFireRate /= 2f;
+    }
+
+    internal void UpgradeBeam()
+    {
+        if (IsBeamActive)
+        {
+            return;
+        }
+        IsBeamActive = true;
+
+        StartCoroutine(BeamCoroutine());
+    }
+
+    IEnumerator BeamCoroutine()
+    {
+        while (true)
+        {
+            beam.SetActive(true);
+            beam.transform.position = GetHeadPosition();
+            beam.transform.localEulerAngles = new Vector3(0, Random.Range(0, 360f), 0);
+            yield return new WaitForSeconds(0.5f);
+            beam.SetActive(false);
+            yield return new WaitForSeconds(5f);
+        }
     }
 }

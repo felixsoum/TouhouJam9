@@ -330,7 +330,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fire Rate Up!
+  m_text: Beam Unlock!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1136,6 +1136,12 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: b4282a3b1bc381e4ab6cc319ad250326, type: 2}
+--- !u!1 &911871044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3676702194395721407, guid: 78dace17e9665d2469f2cc00457618f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3676702193685177083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &912270403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fire Rate Up!
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2420,7 +2426,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2864,11 +2870,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5164478184176393422, guid: 384090a498f201443b34fe23e3081553,
         type: 3}
+      propertyPath: beam
+      value: 
+      objectReference: {fileID: 911871044}
+    - target: {fileID: 5164478184176393422, guid: 384090a498f201443b34fe23e3081553,
+        type: 3}
       propertyPath: playerHUD
       value: 
       objectReference: {fileID: 1228506138}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384090a498f201443b34fe23e3081553, type: 3}
+--- !u!1001 &3676702193685177083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4368592
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46955281
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.22302091
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721406, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721407, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_Name
+      value: Beam
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676702194395721407, guid: 78dace17e9665d2469f2cc00457618f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78dace17e9665d2469f2cc00457618f5, type: 3}
 --- !u!1001 &6278542961322960184
 PrefabInstance:
   m_ObjectHideFlags: 0

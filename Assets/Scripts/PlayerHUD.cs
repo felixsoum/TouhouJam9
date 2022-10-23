@@ -48,7 +48,7 @@ public class PlayerHUD : MonoBehaviour
 
         float expRatio = (float)player.currentExp / player.maxExp;
         expBarForeground.transform.localScale = new Vector3(expRatio, 1, 1);
-        
+
         var screenPoint = mainCamera.WorldToScreenPoint(player.GetHeadPosition());
         screenPoint.x -= 50;
         screenPoint.y += 50;
@@ -77,7 +77,16 @@ public class PlayerHUD : MonoBehaviour
 
     public void OnUpgradeChoice(int index)
     {
-        player.UpgradeFireRate();
+        if (index == 0)
+        {
+            player.UpgradeFireRate();
+
+        }
+        else
+        {
+            player.UpgradeBeam();
+        }
+
         levelUpMenu.SetActive(false);
         Time.timeScale = 1;
     }
