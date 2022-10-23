@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Actor : MonoBehaviour
@@ -10,6 +11,7 @@ public class Actor : MonoBehaviour
     protected Material material;
     protected Camera mainCamera;
 
+    public bool IsFacingRight => isFacingRight;
     bool isFacingRight = true;
 
     private void Awake()

@@ -9,18 +9,12 @@ public class BulletSpawner : MonoBehaviour
     [Expandable]
     public BulletSpawnerSO baseSpawner;
 
+    [SerializeField] bool isPlayerBullet;
     public bool isEnabled;
 
     private void Start()
     {
         isEnabled = true;
-
-        StartCoroutine(AutomaticShoot(baseSpawner.spawnRate));
-
-        if (baseSpawner.hasDuration)
-        {
-            StartCoroutine(DisableAfterSeconds(baseSpawner.spawnDuration));
-        }
     }
 
     private IEnumerator AutomaticShoot(float seconds)
@@ -61,7 +55,7 @@ public class BulletSpawner : MonoBehaviour
                 break;
             case SpawnShape.Circle:
 
-                float circleAngle = 180f;
+                float circleAngle = 360f;
                 float circleCount = baseSpawner.circleCount;
 
                 float circleAngleIncrement = circleAngle / circleCount;
@@ -93,9 +87,9 @@ public class BulletSpawner : MonoBehaviour
     //    return baseSpawner.targetsPlayer ? angle : 0f;
     //}
 
-    private void SpawnBullet(Vector3 dir)
+    public void SpawnBullet(Vector3 dir)
     {
-        Bullet bullet = PoolManager.Instance.GetPooledBullet();
+        Bullet bullet = PoolManager.Instance.GetPooledBullet(isPlayerBullet);
 
         bullet.transform.position = transform.position;
         bullet.SetBulletDir(dir, this.transform.rotation);
