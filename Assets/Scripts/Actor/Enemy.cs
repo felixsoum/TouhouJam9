@@ -19,7 +19,6 @@ public class Enemy : Actor
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<Character>();
