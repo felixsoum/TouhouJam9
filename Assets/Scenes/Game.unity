@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -143,17 +143,17 @@ PrefabInstance:
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 5946938987692839285, guid: bd00b9b4553c83d4c90129aac141c23f,
         type: 3}
@@ -526,6 +526,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 633657147}
   enemyPrefab: {fileID: 1479166185350013504, guid: 1b18fc5a613efab4a8d62e50fd20c946,
     type: 3}
+  activeEnemies: []
 --- !u!4 &1719606771
 Transform:
   m_ObjectHideFlags: 0
