@@ -7,6 +7,7 @@ public class TombManager : MonoBehaviour
     [SerializeField] GameObject prefab;
     [SerializeField] float cooldown = 5f;
     [SerializeField] float lifetime = 5f;
+    [SerializeField] float firstSpawnOffset = 45f;
     float cooldownTimer;
     Vector3 originalPosition;
 
@@ -16,6 +17,7 @@ public class TombManager : MonoBehaviour
         originalPosition = transform.position;
         cooldownTimer = 0;
         Spawn();
+        Spawn(firstSpawnOffset);
     }
 
     // Update is called once per frame
@@ -32,14 +34,14 @@ public class TombManager : MonoBehaviour
             return;
         }
 
-        Spawn();
+        Spawn(firstSpawnOffset);
         cooldownTimer = 0;
     }
 
-    void Spawn()
+    void Spawn(float offset = 0f)
     {
         GameObject platform = Instantiate(prefab, transform);
-        platform.transform.position = originalPosition;
+        platform.transform.position = originalPosition + new Vector3(0, 0, offset);
         Destroy(platform, lifetime);
     }
 }
