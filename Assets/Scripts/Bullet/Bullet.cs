@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool isPlayerFriendly;
     public BulletSO bulletBehaviour;
 
     public float bulletSpeed;
@@ -83,10 +84,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (isPlayerFriendly && other.CompareTag("Enemy"))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             enemy.OnDamage(1);
+        }
+        else if (!isPlayerFriendly && other.CompareTag("Player"))
+        {
+            var player = other.gameObject.GetComponent<Character>();
+            player.OnDamage(5);
         }
     }
 }

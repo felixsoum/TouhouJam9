@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpawner: {fileID: 11400000, guid: 6c9ef12893870544fa35e602d8fc2c71, type: 2}
+  isPlayerBullet: 1
   isEnabled: 0
 --- !u!114 &6256414119099026507
 MonoBehaviour:
@@ -254,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ede1535335dbb4da65205ce735beea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
 --- !u!1 &7375647132994887354
 GameObject:
   m_ObjectHideFlags: 0

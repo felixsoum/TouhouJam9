@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -898,10 +898,14 @@ MonoBehaviour:
     type: 3}
   pooledShooterEnemyCount: 100
   shooterEnemyPool: []
-  pooledBullet: {fileID: 7537862621900389710, guid: 9e84bcbd4037c654b8d10d8aa65c5b10,
+  pooledPlayerBullets: {fileID: 7537862621900389710, guid: 9e84bcbd4037c654b8d10d8aa65c5b10,
     type: 3}
-  pooledBulletCount: 100
-  bulletPool: []
+  pooledPlayerBulletCount: 100
+  playerBulletPool: []
+  pooledEnemyBullets: {fileID: 7537862621900389710, guid: e3805e651c8aec7439c82f6a631aaf84,
+    type: 3}
+  pooledEnemyBulletCount: 100
+  enemyBulletPool: []
 --- !u!1 &2049944209
 GameObject:
   m_ObjectHideFlags: 0

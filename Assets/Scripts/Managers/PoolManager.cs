@@ -13,10 +13,13 @@ public class PoolManager : SingletonComponent<PoolManager>
     [BoxGroup("Pooled ShooterEnemies")] public int pooledShooterEnemyCount;
     [BoxGroup("Pooled ShooterEnemies")] public List<Enemy> shooterEnemyPool = new List<Enemy>();
 
+    [BoxGroup("Pooled Player Bullets")] public GameObject pooledPlayerBullets;
+    [BoxGroup("Pooled Player Bullets")] public int pooledPlayerBulletCount;
+    [BoxGroup("Pooled Player Bullets")] public List<Bullet> playerBulletPool = new List<Bullet>();
 
-    [BoxGroup("Pooled Bullets")] public GameObject pooledBullet;
-    [BoxGroup("Pooled Bullets")] public int pooledBulletCount;
-    [BoxGroup("Pooled Bullets")] public List<Bullet> bulletPool = new List<Bullet>();
+    [BoxGroup("Pooled Player Bullets")] public GameObject pooledEnemyBullets;
+    [BoxGroup("Pooled Player Bullets")] public int pooledEnemyBulletCount;
+    [BoxGroup("Pooled Player Bullets")] public List<Bullet> enemyBulletPool = new List<Bullet>();
 
     // Start is called before the first frame update
     private void Start()
@@ -35,11 +38,18 @@ public class PoolManager : SingletonComponent<PoolManager>
             shooterEnemyPool.Add(enemy);
         }
 
-        for (int i = 0; i < pooledBulletCount; ++i)
+        for (int i = 0; i < pooledPlayerBulletCount; ++i)
         {
-            Bullet bullet = Instantiate(pooledBullet).GetComponent<Bullet>();
+            Bullet bullet = Instantiate(pooledPlayerBullets).GetComponent<Bullet>();
             bullet.gameObject.SetActive(false);
-            bulletPool.Add(bullet);
+            playerBulletPool.Add(bullet);
+        }
+
+        for (int i = 0; i < pooledEnemyBulletCount; ++i)
+        {
+            Bullet bullet = Instantiate(pooledEnemyBullets).GetComponent<Bullet>();
+            bullet.gameObject.SetActive(false);
+            enemyBulletPool.Add(bullet);
         }
     }
 
@@ -85,8 +95,9 @@ public class PoolManager : SingletonComponent<PoolManager>
         return enemy;
     }
 
-    public Bullet GetPooledBullet()
+    public Bullet GetPooledBullet(bool isPlayerBullet)
     {
+        var bulletPool = isPlayerBullet ? playerBulletPool : enemyBulletPool;
         for (int i = 0; i < bulletPool.Count; ++i)
         {
             var b = bulletPool[i];
@@ -99,7 +110,7 @@ public class PoolManager : SingletonComponent<PoolManager>
         }
 
         Debug.LogWarning("Did not pre-warm enough bullets, instantiating");
-        Bullet bullet = Instantiate(pooledBullet).GetComponent<Bullet>();
+        Bullet bullet = Instantiate(isPlayerBullet ? pooledPlayerBullets : pooledEnemyBullets).GetComponent<Bullet>();
         bullet.gameObject.SetActive(true);
         bulletPool.Add(bullet);
 
