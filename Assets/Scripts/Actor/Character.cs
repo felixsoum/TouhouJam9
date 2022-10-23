@@ -16,7 +16,6 @@ public class Character : Actor
     private bool isPicked;
     public int currentHP = 100;
 
-    bool isAlive = true;
     float fadeValue;
 
     public float Stamina { get; set; } = 1f;
@@ -121,6 +120,7 @@ public class Character : Actor
             return;
         }
 
+        OnHit();
         currentHP -= damage;
         if (currentHP <= 0)
         {
