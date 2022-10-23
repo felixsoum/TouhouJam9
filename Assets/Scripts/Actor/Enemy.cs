@@ -30,5 +30,8 @@ public class Enemy : Actor
     internal void OnDamage(int damage)
     {
         gameObject.SetActive(false);
+
+        // If die logic
+        GameManager.Instance.RemoveEnemy(this);
     }
 }

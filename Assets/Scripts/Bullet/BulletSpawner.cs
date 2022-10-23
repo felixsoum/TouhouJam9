@@ -14,14 +14,15 @@ public class BulletSpawner : MonoBehaviour
     private void Start()
     {
         isEnabled = true;
+    }
 
-        // Yikes but it's simplest LOL
-        //InvokeRepeating("Shoot", baseSpawner.spawnRate, baseSpawner.spawnRate);
-
-        //if (baseSpawner.hasDuration)
-        //{
-        //    Invoke("DisableSpawner", baseSpawner.spawnDuration);
-        //}
+    private IEnumerator AutomaticShoot(float seconds)
+    {
+        while (isEnabled)
+        {
+            yield return new WaitForSeconds(seconds);
+            Shoot();
+        }
     }
 
     [Button]
@@ -35,7 +36,7 @@ public class BulletSpawner : MonoBehaviour
         switch (baseSpawner.spawnShape)
         {
             case SpawnShape.Single:
-                SpawnBullet(new Vector3(0f, GetCorrectRotation(), 0f));
+                SpawnBullet(Vector3.zero);
                 break;
 
             case SpawnShape.Cone:
@@ -67,26 +68,30 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    private IEnumerator DisableAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DisableSpawner();
+    }
+
     private void DisableSpawner()
     {
-        CancelInvoke("Shoot");
         isEnabled = false;
-        //Destroy(this);
     }
 
-    private float GetCorrectRotation()
-    {
-        float angle = Vector3.Angle(transform.position, Character.GetPlayerCharacter().transform.position);
+    //private float GetCorrectRotation()
+    //{
+    //    float angle = Vector3.Angle(transform.position, Character.GetPlayerCharacter().transform.position);
 
-        return baseSpawner.targetsPlayer ? angle : 0f;
-    }
+    //    return baseSpawner.targetsPlayer ? angle : 0f;
+    //}
 
     public void SpawnBullet(Vector3 dir)
     {
         Bullet bullet = PoolManager.Instance.GetPooledBullet();
 
         bullet.transform.position = transform.position;
-        bullet.SetBulletDir(dir);
+        bullet.SetBulletDir(dir, this.transform.rotation);
 
         bullet.bulletBehaviour = baseSpawner.bulletSO;
         bullet.UpdateBehaviour();

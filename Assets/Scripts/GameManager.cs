@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonComponent<GameManager>
 {
     [SerializeField] GameObject gameTilePrefab;
     [SerializeField] Transform originTileTransform;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject enemyPrefab;
     static Vector3 centerPosition;
+
+    [SerializeField] List<Enemy> activeEnemies = new List<Enemy>();
 
     private void Start()
     {
@@ -65,13 +68,30 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 var chaserEnemy = PoolManager.Instance.GetPooledChaserEnemy();
+                AddEnemyToActive(chaserEnemy);
                 chaserEnemy.transform.position = GetRandomEnemySpawn();
                 yield return new WaitForSeconds(2f);
             }
 
             var shooterEnemy = PoolManager.Instance.GetPooledShooterEnemy();
+            AddEnemyToActive(shooterEnemy);
             shooterEnemy.transform.position = GetRandomEnemySpawn();
             yield return new WaitForSeconds(2f);
         }
+    }
+
+    public void AddEnemyToActive(Enemy enemy)
+    {
+        activeEnemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        activeEnemies.Remove(enemy);
+    }
+
+    public List<Enemy> GetEnemyList()
+    {
+        return activeEnemies;
     }
 }
