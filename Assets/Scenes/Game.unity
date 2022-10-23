@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -946,6 +946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpForeground: {fileID: 157942511}
+  deathBackground: {fileID: 2049944211}
+  yuyukoPortrait: {fileID: 1737356746}
+  deathText: {fileID: 392028566}
 --- !u!1 &1709525060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1160,7 @@ GameObject:
   - component: {fileID: 1737356747}
   - component: {fileID: 1737356746}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2049944210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1409,5 +1412,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5164478184176393422, guid: 384090a498f201443b34fe23e3081553,
+        type: 3}
+      propertyPath: playerHUD
+      value: 
+      objectReference: {fileID: 1228506138}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384090a498f201443b34fe23e3081553, type: 3}

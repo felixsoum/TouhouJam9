@@ -8,9 +8,13 @@ public class Character : Actor
 {
     [SerializeField] BulletSpawner bulletSpawner;
     [SerializeField] Collider characterCollider;
+    [SerializeField] PlayerHUD playerHUD;
+
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
     public int currentHP = 100;
+
+    bool isAlive = true;
 
     protected override void Start()
     {
@@ -52,7 +56,7 @@ public class Character : Actor
             }
 
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) || (isPicked && !isAlive))
             {
                 isPicked = false;
                 material.SetFloat("_IsPicked", 0);
@@ -65,6 +69,10 @@ public class Character : Actor
 
     private void OnMouseDown()
     {
+        if (!isAlive)
+        {
+            return;
+        }
         MouseDown();
     }
 
@@ -83,10 +91,17 @@ public class Character : Actor
 
     internal void OnDamage(int damage)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         currentHP -= damage;
         if (currentHP <= 0)
         {
             currentHP = 0;
+            isAlive = false;
+            playerHUD.ShowDeathScreen();
         }
     }
 }
