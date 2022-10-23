@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Enemy : Actor
@@ -21,6 +17,15 @@ public class Enemy : Actor
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if (other.CompareTag("Player"))
+        {
+            var player = other.GetComponent<Character>();
+            player.OnDamage(10);
+        }
+    }
 
     internal void OnDamage(int damage)
     {

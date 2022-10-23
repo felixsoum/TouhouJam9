@@ -17,7 +17,8 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(transform.forward * bulletSpeed * Time.deltaTime);
+        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+        //transform.Translate(transform.forward * bulletSpeed * Time.deltaTime);
     }
 
     // Remove this after we have proper collission?

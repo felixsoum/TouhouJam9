@@ -16,12 +16,12 @@ public class BulletSpawner : MonoBehaviour
         isEnabled = true;
 
         // Yikes but it's simplest LOL
-        InvokeRepeating("Shoot", baseSpawner.spawnRate, baseSpawner.spawnRate);
+        //InvokeRepeating("Shoot", baseSpawner.spawnRate, baseSpawner.spawnRate);
 
-        if (baseSpawner.hasDuration)
-        {
-            Invoke("DisableSpawner", baseSpawner.spawnDuration);
-        }
+        //if (baseSpawner.hasDuration)
+        //{
+        //    Invoke("DisableSpawner", baseSpawner.spawnDuration);
+        //}
     }
 
     [Button]
@@ -81,7 +81,7 @@ public class BulletSpawner : MonoBehaviour
         return baseSpawner.targetsPlayer ? angle : 0f;
     }
 
-    private void SpawnBullet(Vector3 dir)
+    public void SpawnBullet(Vector3 dir)
     {
         Bullet bullet = PoolManager.Instance.GetPooledBullet();
 

@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterEnemy : Enemy
 {
     [SerializeField] float speed = 10f;
-
+    [SerializeField] BulletSpawner bulletSpawner;
     Vector3 targetPosition;
 
     protected override void Start()
@@ -24,7 +23,9 @@ public class ShooterEnemy : Enemy
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
                 yield return null;
             }
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(1f);
+            bulletSpawner.Shoot();
+            yield return new WaitForSeconds(4f);
         }
     }
 }
