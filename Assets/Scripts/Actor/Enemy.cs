@@ -34,6 +34,7 @@ public class Enemy : Actor
         if (hp <= 0)
         {
             isAlive = false;
+            player.AddExp(20);
             OnDeath();
             StartCoroutine(DeathCoroutine());
         }
@@ -57,6 +58,8 @@ public class Enemy : Actor
 
         // If die logic
         GameManager.Instance.RemoveEnemy(this);
+        fade = 0;
+        material.SetFloat("_Fade", fade);
         gameObject.SetActive(false);
         isAlive = true;
     }

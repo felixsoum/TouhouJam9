@@ -7,6 +7,7 @@ using UnityEngine;
 public class Character : Actor
 {
     private const float FadeSpeed = 2f;
+    float bulletFireRate = 3f;
     [SerializeField] BulletSpawner bulletSpawner;
     [SerializeField] BulletSpawner bulletSpawner2;
     [SerializeField] Collider characterCollider;
@@ -16,6 +17,8 @@ public class Character : Actor
     public CharacterMouseProxy MouseProxy { get; set; }
     private bool isPicked;
     public int currentHP = 100;
+    public int currentExp;
+    public int maxExp = 100;
 
     float fadeValue;
 
@@ -31,7 +34,7 @@ public class Character : Actor
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(bulletFireRate);
             var angle = new Vector3(0, IsFacingRight ? 90 : -90, 0);
             bulletSpawner.SpawnBullet(angle);
             bulletSpawner2.SpawnBullet(angle);
@@ -134,5 +137,20 @@ public class Character : Actor
     public Vector3 GetHeadPosition()
     {
         return headTransform.position;
+    }
+
+    internal void AddExp(int exp)
+    {
+        currentExp += exp;
+        if (currentExp >= maxExp)
+        {
+            currentExp %= maxExp;
+            playerHUD.LevelUp();
+        }
+    }
+
+    internal void UpgradeFireRate()
+    {
+        bulletFireRate /= 2f;
     }
 }

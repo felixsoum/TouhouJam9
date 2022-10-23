@@ -13,7 +13,10 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] Image hpForeground;
     [SerializeField] Image deathBackground;
     [SerializeField] Image yuyukoPortrait;
+    [SerializeField] Image expBarForeground;
     [SerializeField] TMP_Text deathText;
+    [SerializeField] GameObject levelUpMenu;
+
     Character player;
     private Camera mainCamera;
 
@@ -22,7 +25,9 @@ public class PlayerHUD : MonoBehaviour
         deathBackground.enabled = false;
         yuyukoPortrait.enabled = false;
         deathText.enabled = false;
+        levelUpMenu.SetActive(false);
     }
+
     internal void ShowDeathScreen()
     {
         StartCoroutine(DeathScreenCoroutine());
@@ -41,6 +46,9 @@ public class PlayerHUD : MonoBehaviour
         staminaBar.gameObject.SetActive(player.Stamina < 1f && player.IsAlive);
         staminaForeground.fillAmount = player.Stamina;
 
+        float expRatio = (float)player.currentExp / player.maxExp;
+        expBarForeground.transform.localScale = new Vector3(expRatio, 1, 1);
+        
         var screenPoint = mainCamera.WorldToScreenPoint(player.GetHeadPosition());
         screenPoint.x -= 50;
         screenPoint.y += 50;
@@ -59,5 +67,18 @@ public class PlayerHUD : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         Time.timeScale = 1;
         SceneManager.LoadScene("Start");
+    }
+
+    internal void LevelUp()
+    {
+        levelUpMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void OnUpgradeChoice(int index)
+    {
+        player.UpgradeFireRate();
+        levelUpMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
