@@ -91,8 +91,8 @@ MonoBehaviour:
   visualContainer: {fileID: 5538067729083888175}
   meshRenderer: {fileID: 2040034396777758325}
   myRigidbody: {fileID: 2083972898055955654}
-  acceleration: 2
-  maxSpeed: 2
+  acceleration: 1
+  maxSpeed: 0.5
 --- !u!23 &2040034396777758325 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2082318133808601409, guid: 1b18fc5a613efab4a8d62e50fd20c946,

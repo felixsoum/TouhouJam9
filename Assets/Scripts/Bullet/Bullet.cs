@@ -87,12 +87,20 @@ public class Bullet : MonoBehaviour
         if (isPlayerFriendly && other.CompareTag("Enemy"))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.OnDamage(1);
+            if (enemy.IsAlive)
+            {
+                enemy.OnDamage(1);
+                gameObject.SetActive(false);
+            }
         }
         else if (!isPlayerFriendly && other.CompareTag("Player"))
         {
             var player = other.gameObject.GetComponent<Character>();
-            player.OnDamage(5);
+            if (player.IsAlive)
+            {
+                player.OnDamage(5);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ public class PlayerHUD : MonoBehaviour
     {
         hpForeground.transform.localScale = new Vector3(player.GetHPRatio(), 1, 1);
 
-        staminaBar.gameObject.SetActive(player.Stamina < 1f);
+        staminaBar.gameObject.SetActive(player.Stamina < 1f && player.IsAlive);
         staminaForeground.fillAmount = player.Stamina;
 
         var screenPoint = mainCamera.WorldToScreenPoint(player.GetHeadPosition());

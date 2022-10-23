@@ -65,18 +65,19 @@ public class GameManager : SingletonComponent<GameManager>
     {
         while (true)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var chaserEnemy = PoolManager.Instance.GetPooledChaserEnemy();
                 AddEnemyToActive(chaserEnemy);
                 chaserEnemy.transform.position = GetRandomEnemySpawn();
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(0.5f);
             }
 
+            yield return new WaitForSeconds(10f);
             var shooterEnemy = PoolManager.Instance.GetPooledShooterEnemy();
             AddEnemyToActive(shooterEnemy);
             shooterEnemy.transform.position = GetRandomEnemySpawn();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(10f);
         }
     }
 

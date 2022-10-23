@@ -13,8 +13,12 @@ public class Actor : MonoBehaviour
 
     public bool IsFacingRight => isFacingRight;
     bool isFacingRight = true;
+    float hitValue;
 
-    private void Awake()
+    public bool IsAlive => isAlive;
+    protected bool isAlive = true;
+
+    protected virtual void Awake()
     {
         material = meshRenderer.material;
     }
@@ -24,9 +28,23 @@ public class Actor : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    private void OnEnable()
+    {
+        isAlive = true;
+    }
+
     protected virtual void Update()
     {
         meshRenderer.transform.forward = mainCamera.transform.forward;
+        hitValue -= 5f * Time.deltaTime;
+        hitValue = Mathf.Clamp01(hitValue);
+        material.SetFloat("_Hit", hitValue);
+    }
+
+    protected void OnHit()
+    {
+        hitValue = 1f;
+        material.SetFloat("_Hit", hitValue);
     }
 
     protected void SetIsFacingRight(bool isFacingRight)
