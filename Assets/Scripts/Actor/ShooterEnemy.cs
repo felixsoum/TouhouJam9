@@ -13,6 +13,12 @@ public class ShooterEnemy : Enemy
         StartCoroutine(AICoroutine());
     }
 
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        StopCoroutine(AICoroutine());
+    }
+
     IEnumerator AICoroutine()
     {
         while (true)

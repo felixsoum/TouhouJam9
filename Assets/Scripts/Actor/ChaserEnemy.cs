@@ -12,6 +12,12 @@ public class ChaserEnemy : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if (!isAlive)
+        {
+            return;
+        }
+
         var direction = player.transform.position - transform.position;
         direction.Normalize();
         SetIsFacingRight(direction.x > 0);

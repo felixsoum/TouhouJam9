@@ -58,4 +58,6 @@ public class Actor : MonoBehaviour
 
         visualContainer.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
     }
+
+    protected virtual void OnDeath() { }
 }

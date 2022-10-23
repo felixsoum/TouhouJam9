@@ -8,6 +8,7 @@ public class Character : Actor
 {
     private const float FadeSpeed = 2f;
     [SerializeField] BulletSpawner bulletSpawner;
+    [SerializeField] BulletSpawner bulletSpawner2;
     [SerializeField] Collider characterCollider;
     [SerializeField] PlayerHUD playerHUD;
     [SerializeField] Transform headTransform;
@@ -33,6 +34,7 @@ public class Character : Actor
             yield return new WaitForSeconds(3f);
             var angle = new Vector3(0, IsFacingRight ? 90 : -90, 0);
             bulletSpawner.SpawnBullet(angle);
+            bulletSpawner2.SpawnBullet(angle);
         }
     }
 
@@ -69,7 +71,6 @@ public class Character : Actor
                 transform.position = hitInfo.point;
             }
 
-
             if (Input.GetMouseButtonUp(0) || (isPicked && !isAlive) || Stamina == 0)
             {
                 isPicked = false;
@@ -97,11 +98,11 @@ public class Character : Actor
 
     internal void MouseDown()
     {
-        if (Stamina < 0.1f)
+        if (Stamina < 0.05f)
         {
             return;
         }
-        Stamina -= 0.1f;
+        Stamina -= 0.05f;
         isPicked = true;
         material.SetFloat("_IsPicked", 1);
         Time.timeScale = 0.05f;

@@ -34,6 +34,7 @@ public class Enemy : Actor
         if (hp <= 0)
         {
             isAlive = false;
+            OnDeath();
             StartCoroutine(DeathCoroutine());
         }
         else
@@ -48,7 +49,7 @@ public class Enemy : Actor
         float fade = 0;
         while (fade < 1)
         {
-            fade += Time.deltaTime;
+            fade += 2f * Time.deltaTime;
             fade = Mathf.Clamp01(fade);
             material.SetFloat("_Fade", fade);
             yield return null;
